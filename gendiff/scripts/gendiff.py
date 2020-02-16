@@ -1,14 +1,14 @@
 import argparse
-
-
-parser = argparse.ArgumentParser(prog='gendiff', description='Generate diff')
-parser.add_argument('first_file')
-parser.add_argument('second_file')
-parser.add_argument("-f","--function", metavar="FORMAT", help='see format of output')
+from gendiff.engine import generate_diff
 
 
 def main():
-    parser.print_help()
+    parser = argparse.ArgumentParser(prog='gendiff', description='Generate diff')
+    parser.add_argument('first_file')
+    parser.add_argument('second_file')
+    parser.add_argument("-f","--format", metavar="FORMAT", help='see format of output')
+    args = parser.parse_args()
+    print(generate_diff(args.first_file, args.second_file))
 
 
 if __name__ == '__main__':

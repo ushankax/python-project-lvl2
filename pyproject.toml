@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-project-lvl2"
+name = "ushankax_gendiff"
 version = "0.1.0"
 description = ""
 packages = [
