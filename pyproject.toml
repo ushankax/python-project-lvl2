@@ -11,6 +11,7 @@ authors = ["ushankax <ushanka.x@gmail.com>"]
 python = "^3.6"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^3.7.9"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
