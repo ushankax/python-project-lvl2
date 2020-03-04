@@ -19,7 +19,7 @@ def diff_deeper(old, new):
 
 
 def generate_diff(old, new):
-    os.chdir("gendiff/files/")
+    os.chdir("gendiff/tests/fixtures/")
     old = json.load(open(old))
     new = json.load(open(new))
     equal = old.keys() & new.keys()

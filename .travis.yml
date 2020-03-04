@@ -13,3 +13,6 @@ script:
 
 script: 
         - make lint
+
+script:
+        - pytest
