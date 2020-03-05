@@ -4,7 +4,7 @@ python:
 
 before_install:
         - pip install poetry
-        - pip install coverage
+        - pip install pytest-cov
 
 before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64> ./cc-test-reporter
@@ -16,8 +16,6 @@ install:
 script:
         - make check
         - make lint
-        - coverage run gendiff/tests/fixtures/test_json.py test -v
+        - poetry run pytest --cov=gendiff tests/ --cov-report xml
 
-after_script:
-        - coverage xml
 
