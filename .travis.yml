@@ -1,6 +1,9 @@
 language: python
 python:
         - "3.6"
+env:
+  global:
+    - CC_TEST_REPORTER_ID=700e8119890af7bdd8ed121e16c4dcd4db674cf11fc6d256aacf6720f9ef5f63
 
 before_install:
         - pip install poetry
@@ -16,6 +19,6 @@ install:
 script:
         - make check
         - make lint
-        - poetry run pytest --cov=gendiff tests/test_json.py --cov-report xml
+        - poetry run pytest --cov=gendiff tests/ --cov-report xml
 
 
