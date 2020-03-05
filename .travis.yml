@@ -16,6 +16,6 @@ install:
 script:
         - make check
         - make lint
-        - poetry run pytest --cov=gendiff tests/ --cov-report xml
+        - poetry run pytest --cov=gendiff tests/test_json.py --cov-report xml
 
 
