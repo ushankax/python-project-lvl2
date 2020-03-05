@@ -16,7 +16,7 @@ install:
 script:
         - make check
         - make lint
-        - coverage run -m pytest
+        - coverage run gendiff/tests/test_json.py -m pytest -v
 
 after_script:
         - coverage xml
