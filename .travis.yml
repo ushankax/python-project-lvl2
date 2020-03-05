@@ -4,6 +4,7 @@ python:
 
 before_install:
         - pip install poetry
+        - pip install pytest
         - pip install coverage
 
 before_script:
@@ -16,8 +17,5 @@ install:
 script:
         - make check
         - make lint
-        - coverage run gendiff/tests/test_json.py -m pytest -v
-
-after_script:
-        - coverage xml
+        - poetry run coverage run -m pytest
 
