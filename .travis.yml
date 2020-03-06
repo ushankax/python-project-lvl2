@@ -21,5 +21,7 @@ install:
 script:
         - make check
         - make lint
-        - poetry run pytest --cov=gendiff tests/ --cov-report xml
+        - pytest --cov=gendiff gendiff/tests/ --cov-report xml
 
+ after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
