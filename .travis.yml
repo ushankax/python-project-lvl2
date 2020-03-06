@@ -1,4 +1,5 @@
 language: python
+os: osx
 python:
         - "3.6"
 env:
@@ -12,6 +13,7 @@ before_install:
 before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64> ./cc-test-reporter
         - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
 
 install:
         - make configure
@@ -19,6 +21,8 @@ install:
 script:
         - make check
         - make lint
-        - poetry run pytest --cov=gendiff tests/ --cov-report xml
+        - pytest --cov=gendiff tests/ --cov-report xml
 
+after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
