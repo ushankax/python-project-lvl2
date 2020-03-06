@@ -8,7 +8,7 @@ env:
 before_install:
         - pip install poetry
         - pip install -U pytest
-        - pip install coverage
+        - pip install pytest-cov
 
 before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -21,8 +21,5 @@ install:
 script:
         - make check
         - make lint
-        - coverage run -m pytest gendiff/tests/test_json.py
-
-after_script:
-        - coverage xml
+        - poetry run pytest --cov=gendiff tests/ --cov-report xml
 
