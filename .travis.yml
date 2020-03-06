@@ -7,7 +7,7 @@ env:
 
 before_install:
         - pip install poetry
-        - pip install pytest
+        - pip install -U pytest
         - pip install coverage
 
 before_script:
@@ -21,8 +21,8 @@ install:
 script:
         - make check
         - make lint
-        - coverage run tests/test_json.py
+        - coverage run gendiff/tests/test_json.py
 
 after_script:
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+        - coverage xml
 
