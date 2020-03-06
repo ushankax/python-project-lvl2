@@ -16,12 +16,11 @@ before_script:
         - ./cc-test-reporter before-build
 
 install:
-        - make configure
+        - make install
 
 script:
         - make check
-        - make lint
-        - poetry run pytest --cov=gendiff gendiff/tests/ --cov-report xml
+        - poetry run pytest --cov=gendiff tests/ --cov-report xml
 
  after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
