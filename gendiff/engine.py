@@ -24,16 +24,16 @@ def diff_deeper(old, new):
     return "".join(d)
 
 
-def parse(old, new):
-    filename = os.path.basename("old")
-    format = os.path.splitext(filename)[1]
+def parse(before, after):
+    file_name = os.path.basename("old")
+    file_format = os.path.splitext(file_name)[1]
 
-    if format == ".json":
-        old = json.load(open(old))
-        new = json.load(open(new))
-    elif old == ".yml":
-        old = yaml.safe_load(open(old))
-        new = yaml.safe_load(open(new))
+    if file_format == ".json":
+        old = json.load(open(before))
+        new = json.load(open(after))
+    elif file_format == ".yml":
+        old = yaml.safe_load(open(before))
+        new = yaml.safe_load(open(after))
 
     return old, new
 
