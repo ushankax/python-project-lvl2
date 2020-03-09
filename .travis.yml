@@ -1,13 +1,13 @@
 language: python
-python:
-        - "3.6"
+python: 3.6
+
 env:
   global:
     - CC_TEST_REPORTER_ID=700e8119890af7bdd8ed121e16c4dcd4db674cf11fc6d256aacf6720f9ef5f63
 
 before_install:
         - pip install poetry
-        - pip install -U pytest
+        - pip install pytest
         - pip install pytest-cov
 
 before_script:
