@@ -1,4 +1,7 @@
 import json
+import yaml
+import os
+
 
 d = []
 
@@ -21,9 +24,22 @@ def diff_deeper(old, new):
     return "".join(d)
 
 
+def parse(old, new):
+    filename = os.path.basename("old")
+    format = os.path.splitext(file_name)[1]
+
+    if format == ".json":
+        old = json.load(open(old))
+        new = json.load(open(new))
+    elif old == ".yml":
+        old = yaml.safe_load(open(old))
+        new = yaml.safe_load(open(new))
+
+    return old, new
+
+
 def generate_diff(first_file, second_file):
-    old = json.load(open(first_file))
-    new = json.load(open(second_file))
+    old, new = parse(first_file, second_file)
     equal = old.keys() & new.keys()
     added = old.keys() - new.keys()
     deleted = new.keys() - old.keys()
