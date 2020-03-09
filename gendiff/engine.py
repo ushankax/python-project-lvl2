@@ -12,6 +12,9 @@ def diff_deeper(old, new):
             d.append('{{{}: '.format(old_k))
             diff_deeper(old_v, new_v)
             d.append('}')
+        elif old_k == new_k and not isinstance(new_v, dict):
+            d.append('{{{}: {}'.format(old_k, new_v))
+            d.append('}')
         else:
             d.append('{{+ {}: {}, - {}: {}}}'.format(new_k, new_v,
                                                      old_k, old_v))
@@ -19,16 +22,13 @@ def diff_deeper(old, new):
     return "".join(d)
 
 
-def generate_diff(old, new):
-    os.chdir("gendiff/files/")
-    old = json.load(open(old))
-    new = json.load(open(new))
+def generate_diff(first_file, second_file):
+    old = json.load(open(first_file))
+    new = json.load(open(second_file))
     equal = old.keys() & new.keys()
     added = old.keys() - new.keys()
     deleted = new.keys() - old.keys()
-    result = []
-
-    result.append("{")
+    result = ["{"]
 
     for k in equal:
         if isinstance(new[k], dict):
