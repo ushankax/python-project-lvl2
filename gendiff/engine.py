@@ -13,7 +13,8 @@ def diff_deeper(old, new):
             diff_deeper(old_v, new_v)
             d.append('}')
         else:
-            d.append('{{+ {}: {}, - {}: {}}}'.format(new_k, new_v, old_k, old_v))
+            d.append('{{+ {}: {}, - {}: {}}}'.format(new_k, new_v,
+                                                     old_k, old_v))
 
     return "".join(d)
 
