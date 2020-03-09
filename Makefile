@@ -1,15 +1,13 @@
 install:
-	@poetry install
-
-lint:
-	@poetry run flake8 gendiff
-
-selfcheck:
-	poetry check
-
-check: selfcheck lint
+        @poetry install
 
 test:
-    poetry run pytest --cov=gendiff tests/ --cov-report xml
+        poetry run pytest --cov=gendiff tests/ --cov-report xml
 
-.PHONY: install lint selfcheck check build
+lint:
+	    @poetry run flake8 gendiff
+
+selfcheck:
+	    poetry check
+
+check: selfcheck test lint
