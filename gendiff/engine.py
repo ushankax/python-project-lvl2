@@ -29,13 +29,9 @@ def parse(before, after):
     file_format = os.path.splitext(file_name)[1]
 
     if file_format == ".json":
-        old = json.load(open(before))
-        new = json.load(open(after))
+        return json.load(open(before)), json.load(open(after))
     elif file_format == ".yml":
-        old = yaml.safe_load(open(before))
-        new = yaml.safe_load(open(after))
-
-    return old, new
+        return yaml.safe_load(open(before)), yaml.safe_load(open(after))
 
 
 def generate_diff(first_file, second_file):
