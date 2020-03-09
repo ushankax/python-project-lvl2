@@ -6,22 +6,22 @@ env:
     - CC_TEST_REPORTER_ID=700e8119890af7bdd8ed121e16c4dcd4db674cf11fc6d256aacf6720f9ef5f63
 
 before_install:
-        - pip install poetry
-        - pip install pytest
-        - pip install pytest-cov
+  - pip install poetry
+  - pip install pytest
+  - pip install pytest-cov
 
 before_script:
-        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-        - chmod +x ./cc-test-reporter
-        - ./cc-test-reporter before-build
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 install:
-        - make install
+  - make install
 
 script:
-        - make check
-        - make lint
-        - poetry run pytest --cov=gendiff tests/ --cov-report xml
+  - make check
+  - make lint
+  - poetry run pytest --cov=gendiff tests/ --cov-report xml
 
- after_script:
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
