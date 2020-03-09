@@ -26,7 +26,7 @@ def diff_deeper(old, new):
 
 def parse(old, new):
     filename = os.path.basename("old")
-    format = os.path.splitext(file_name)[1]
+    format = os.path.splitext(filename)[1]
 
     if format == ".json":
         old = json.load(open(old))
