@@ -7,8 +7,6 @@ env:
 
 before_install:
   - pip install poetry
-  - pip install pytest
-  - pip install pytest-cov
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -21,7 +19,7 @@ install:
 script:
   - make check
   - make lint
-  - poetry run pytest --cov=gendiff tests/ --cov-report xml
+  - make test
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
