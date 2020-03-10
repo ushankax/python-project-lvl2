@@ -1,9 +1,8 @@
-import argparse
-from gendiff.parsers import parser
+from gendiff import parsers
 
 
 def main():
-    parser()
+    parsers.gendiff_parser()
 
 
 if __name__ == '__main__':

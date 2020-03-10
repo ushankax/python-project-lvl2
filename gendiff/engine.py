@@ -1,7 +1,4 @@
-from gendiff.parsers import parse
-import json
-import yaml
-import os
+from gendiff import parsers
 
 
 d = []
@@ -26,7 +23,7 @@ def diff_deeper(old, new):
 
 
 def generate_diff(first_file, second_file):
-    old, new = parse(first_file, second_file)
+    old, new = parsers.parse(first_file, second_file)
     equal = old.keys() & new.keys()
     added = old.keys() - new.keys()
     deleted = new.keys() - old.keys()
@@ -34,18 +31,18 @@ def generate_diff(first_file, second_file):
 
     for k in equal:
         if isinstance(new[k], dict):
-            result.append("  {}: {}".format(k, diff_deeper(old[k], new[k])))
+            result.append("\t  {}: {}".format(k, diff_deeper(old[k], new[k])))
         elif old[k] == new[k]:
-            result.append("  {}: {}".format(k, old[k]))
+            result.append("\t  {}: {}".format(k, old[k]))
         else:
-            result.append("+ {}: {}".format(k, new[k]))
-            result.append("- {}: {}".format(k, old[k]))
+            result.append("\t+ {}: {}".format(k, new[k]))
+            result.append("\t- {}: {}".format(k, old[k]))
 
     for k in added:
-        result.append("+ {}: {}".format(k, old[k]))
+        result.append("\t+ {}: {}".format(k, old[k]))
 
     for k in deleted:
-        result.append("- {}: {}".format(k, new[k]))
+        result.append("\t- {}: {}".format(k, new[k]))
 
     result.append("}")
 

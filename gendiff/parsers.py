@@ -1,8 +1,11 @@
 import argparse
-from gendiff.engine import generate_diff
+import os
+import json
+import yaml
+from gendiff import engine
 
 
-def parser():
+def gendiff_parser():
     parser = argparse.ArgumentParser(prog='gendiff',
                                      description='Generate diff')
     parser.add_argument('first_file')
@@ -10,7 +13,7 @@ def parser():
     parser.add_argument("-f", "--format", metavar="FORMAT",
                         help='see format of output')
     args = parser.parse_args()
-    print(generate_diff(args.first_file, args.second_file))
+    print(engine.generate_diff(args.first_file, args.second_file))
 
 
 def parse(before, after):
@@ -20,8 +23,8 @@ def parse(before, after):
     if file_format == ".json":
         old = json.load(open(before))
         new = json.load(open(after))
+        return old, new
     elif file_format == ".yml":
         old = yaml.safe_load(open(before))
         new = yaml.safe_load(open(after))
-
-    return old, new
+        return old, new
