@@ -25,13 +25,17 @@ def diff_deeper(old, new):
 
 
 def parse(before, after):
-    file_name = os.path.basename("old")
+    file_name = os.path.basename("{}".format(before))
     file_format = os.path.splitext(file_name)[1]
 
     if file_format == ".json":
-        return json.load(open(before)), json.load(open(after))
+        old = json.load(open(before))
+        new = json.load(open(after))
     elif file_format == ".yml":
-        return yaml.safe_load(open(before)), yaml.safe_load(open(after))
+        old = yaml.safe_load(open(before))
+        new = yaml.safe_load(open(after))
+
+    return old, new
 
 
 def generate_diff(first_file, second_file):
